@@ -35,10 +35,10 @@ const showingNavigationDropdown = ref(false);
                   Dashboard
                 </NavLink>
 
-                <!-- telescope -->
-                <a href="/telescope" :active="route().current('telescope')">
+
+                <NavLink :href="route('telescope')" target="_blank" :active="route().current('telescope')">
                   Telescope
-                </a>
+                </NavLink>
               </div>
             </div>
 
