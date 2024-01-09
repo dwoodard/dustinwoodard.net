@@ -18,6 +18,14 @@ defineProps({
     type: String,
     required: true,
   },
+  currentTime: {
+    type: String,
+    required: true,
+  },
+  currentDate: {
+    type: String,
+    required: true,
+  },
 });
 </script>
 
@@ -33,9 +41,9 @@ defineProps({
 
       <!-- Navigation Links -->
       <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-        <a :href="route('home')" :active="route().current('home')">
+        <NavLink :href="route('home')" :active="route().current('home')">
           Home
-        </a>
+        </NavLink>
 
         <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
           Dashboard
@@ -53,6 +61,13 @@ defineProps({
 
         <Link v-if="canRegister" :href="route('register')" class="ms-4 font-semibold  hover:text-gray-900 dark:text-gray-400  focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</Link>
       </template>
+    </div>
+
+    <!-- currentTime -->
+    <div class="mt-4
+      p-10
+    text-gray-500 dark:text-gray-400 text-sm text-center sm:mt-0 sm:ms-0 sm:text-left" dir="ltr">
+      {{ currentDate }} {{ currentTime }}
     </div>
   </div>
 </template>
