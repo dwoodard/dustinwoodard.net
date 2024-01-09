@@ -1,11 +1,4 @@
 {
-  "_ApplicationLogo-Fl-MBKoY.js": {
-    "file": "assets/ApplicationLogo-Fl-MBKoY.js",
-    "imports": [
-      "__plugin-vue_export-helper-x3n3nnut.js",
-      "resources/js/app.js"
-    ]
-  },
   "_ApplicationLogo-fvvkF1XQ.js": {
     "file": "assets/ApplicationLogo-fvvkF1XQ.js",
     "imports": [
@@ -21,21 +14,6 @@
       "_NavLink-5m0CbDAG.js"
     ]
   },
-  "_AuthenticatedLayout-7gMuNsSS.js": {
-    "file": "assets/AuthenticatedLayout-7gMuNsSS.js",
-    "imports": [
-      "_ApplicationLogo-Fl-MBKoY.js",
-      "resources/js/app.js",
-      "_NavLink-861nUvHw.js"
-    ]
-  },
-  "_GuestLayout-YGLiwmiu.js": {
-    "file": "assets/GuestLayout-YGLiwmiu.js",
-    "imports": [
-      "_ApplicationLogo-Fl-MBKoY.js",
-      "resources/js/app.js"
-    ]
-  },
   "_GuestLayout-pZKcKAp8.js": {
     "file": "assets/GuestLayout-pZKcKAp8.js",
     "imports": [
@@ -49,29 +27,10 @@
       "resources/js/app.js"
     ]
   },
-  "_NavLink-861nUvHw.js": {
-    "file": "assets/NavLink-861nUvHw.js",
-    "imports": [
-      "resources/js/app.js"
-    ]
-  },
-  "_PrimaryButton-QIVuuQxw.js": {
-    "file": "assets/PrimaryButton-QIVuuQxw.js",
-    "imports": [
-      "__plugin-vue_export-helper-x3n3nnut.js",
-      "resources/js/app.js"
-    ]
-  },
   "_PrimaryButton-_jhYfcKu.js": {
     "file": "assets/PrimaryButton-_jhYfcKu.js",
     "imports": [
       "__plugin-vue_export-helper-x3n3nnut.js",
-      "resources/js/app.js"
-    ]
-  },
-  "_TextInput-450tORP7.js": {
-    "file": "assets/TextInput-450tORP7.js",
-    "imports": [
       "resources/js/app.js"
     ]
   },
