@@ -35,6 +35,12 @@ defineProps({
 
 onKonamiCode(() => {
   console.log('You found the Konami Code!');
+
+  //toggle tailwind bg to be purple instead of slate, in the #main
+  const main = document.getElementById('main');
+  //if bg-slate-900, change to bg-purple-900 or vice versa
+  main.classList.toggle('bg-slate-900');
+  main.classList.toggle('bg-purple-900');
 });
 
 
@@ -66,7 +72,7 @@ onKonamiCode(() => {
         </div>
       </div>
 
-      <div class="p-20 bg-slate-900 bg-gradient-to-b from-slate-700 to-transparent ">
+      <div id="main" class="p-20 bg-slate-900 bg-gradient-to-b from-slate-700 to-transparent ">
         <h1 class="text-6xl font-extrabold tracking-tight text-white sm:text-7xl md:text-8xl">
 
           Hero
