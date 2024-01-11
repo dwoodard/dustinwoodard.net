@@ -115,14 +115,10 @@ onMounted(() => {
       if (camera) {
         renderer.render(scene, camera)
 
-
-
-
       };
 
 
       window.requestAnimationFrame(tick);
-      controls.update();
 
     };
     tick();
