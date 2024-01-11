@@ -56,10 +56,6 @@ onMounted(() => {
       scene.add(model);
 
       console.log('gltf', gltf);
-      console.log('parser', gltf.parser);
-
-
-
 
       // GLTF Camera
       let gltfCamera = gltf.cameras[0];
@@ -73,8 +69,6 @@ onMounted(() => {
 
 
       scene.add(camera)
-
-
 
       // scene.castShadow = true;
 
