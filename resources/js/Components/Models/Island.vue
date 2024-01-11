@@ -114,7 +114,6 @@ onMounted(() => {
       };
       if (camera) {
         renderer.render(scene, camera)
-
       };
 
 
