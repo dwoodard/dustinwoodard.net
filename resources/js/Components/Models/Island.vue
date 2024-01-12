@@ -56,7 +56,7 @@ onMounted(() => {
   // Load GLTF Model
   function loadModel() {
     const loader = new GLTFLoader();
-    loader.load('/assets/models/main/scene.gltf', (gltf) => {
+    loader.load('/assets/models/main/scene.glb', (gltf) => {
       const model = gltf.scene;
       scene.add(model);
 
