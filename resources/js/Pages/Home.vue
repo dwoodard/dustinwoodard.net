@@ -68,7 +68,7 @@ onKonamiCode(() => {
 
 
       <div>
-        <Island />
+        <!-- <Island /> -->
       </div>
 
 

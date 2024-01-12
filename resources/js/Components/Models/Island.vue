@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { gsap } from 'gsap';
 
@@ -38,7 +38,7 @@ onMounted(() => {
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1;
     renderer.physicallyCorrectLights = true
-    renderer.gammaOutput = true
+    // renderer.gammaOutput = true
 
     if (camera) {
       camera.aspect = window.innerWidth / window.innerHeight;
