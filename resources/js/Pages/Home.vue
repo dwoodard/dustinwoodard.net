@@ -5,7 +5,7 @@ import Dropdown from '@/Components/Dropdown.vue';
 import NavLink from '@/Components/NavLink.vue';
 import { onKonamiCode } from '@/utils/konami';
 
-import Island from '@/Components/Models/Island.vue';
+// import Island from '@/Components/Models/Island.vue';
 
 
 defineProps({
