@@ -53,6 +53,8 @@ onMounted(() => {
 
   }
 
+  //current
+
   // Load GLTF Model
   function loadModel() {
     const loader = new GLTFLoader();
