@@ -19,7 +19,16 @@ onMounted(() => {
     renderer = new THREE.WebGLRenderer({
       antialias: true,
       canvas: canvasRef.value,
+
       alpha: true,
+      toneMapping: THREE.NoToneMapping,
+      outputEncoding: THREE.sRGBEncoding,
+      physicallyCorrectLights: true,
+      toneMappingExposure: .5,
+      shadowMap: {
+        enabled: true,
+        type: THREE.PCFSoftShadowMap,
+      }
 
     });
 
@@ -32,13 +41,8 @@ onMounted(() => {
   // Update Renderer Size
   function updateRendererSize() {
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.shadowMap.enabled = true
-    renderer.outputEncoding = THREE.sRGBEncoding;
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1;
-    renderer.physicallyCorrectLights = true
-    // renderer.gammaOutput = true
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1));
+
 
     if (camera) {
       camera.aspect = window.innerWidth / window.innerHeight;
@@ -63,11 +67,12 @@ onMounted(() => {
 
       camera = new THREE.PerspectiveCamera();
 
+
       camera.position.set(gltfCamera.position.x, gltfCamera.position.y, gltfCamera.position.z);
       camera.rotation.set(gltfCamera.rotation.x, gltfCamera.rotation.y, gltfCamera.rotation.z);
       camera.scale.set(gltfCamera.scale.x, gltfCamera.scale.y, gltfCamera.scale.z);
 
-
+      camera.lookAt(model.position);
       scene.add(camera)
 
       // scene.castShadow = true;
@@ -77,24 +82,43 @@ onMounted(() => {
       mixer = new THREE.AnimationMixer(model);
       gltf.animations.forEach((clip) => mixer.clipAction(clip).play());
 
-      //add Lights
-      let light = new THREE.AmbientLight(0xffffff, 1);
-      scene.add(light);
-
-      let light2 = new THREE.PointLight(0xffffff, 1);
-      // rotate and position the light at cube
-      // get cube position
-      let cubePos = model.position;
-      light2.position.set(cubePos.x, cubePos.y, cubePos.z);
 
 
-      scene.add(light2);
+      //LIGHTS
+      let pointLight = {
+        get color() {
+          let color = "#FFFFFF";
+          return parseInt(color.replace('#', ''), 16);
+        },
+        intensity: 10,
+        distance: 100,
+      }
+
+      let worldLight = new THREE.PointLight(pointLight.color, pointLight.intensity, pointLight.distance);
+      worldLight.position.set(0, 50, 0);
+      // scene.add(worldLight);
+
+      // hemi light
+      let hemiLight = {
+        get skyColor() {
+          let skyColor = "#FFFFFF";
+          return parseInt(skyColor.replace('#', ''), 16);
+        },
+        get groundColor() {
+          let groundColor = "#000000";
+          return parseInt(groundColor.replace('#', ''), 16);
+        },
+        intensity: 2
+      }
 
 
 
+      // HemisphereLight(skyColor, groundColor, intensity)
+      hemiLight = new THREE.HemisphereLight(hemiLight.skyColor, hemiLight.groundColor, hemiLight.intensity);
+      scene.add(hemiLight);
 
 
-
+      updateRendererSize();
 
     });
   }
@@ -121,7 +145,6 @@ onMounted(() => {
 
   // Initialization
   initRenderer(canvasRef.value);
-
   loadModel();
   animate();
 });
