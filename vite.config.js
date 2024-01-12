@@ -17,11 +17,9 @@ export default defineConfig({
       },
     }),
   ],
-  build: {
-    manifest: true,
-    rollupOptions: {
-      //app and css
-      input: ['resources/js/app.js', 'resources/css/app.css']
+  resolve: {
+    alias: {
+      '@': '/resources/js',
     },
-  },
+  }
 });
