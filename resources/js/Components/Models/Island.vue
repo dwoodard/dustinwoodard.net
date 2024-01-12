@@ -1,11 +1,12 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import * as THREE from 'three';
-// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { gsap } from 'gsap';
 
 const canvasRef = ref(null);
+
 
 
 
@@ -66,6 +67,8 @@ onMounted(() => {
 
 
       camera = new THREE.PerspectiveCamera();
+      const helper = new THREE.CameraHelper(camera);
+      scene.add(helper);
 
 
       camera.position.set(gltfCamera.position.x, gltfCamera.position.y, gltfCamera.position.z);
@@ -75,7 +78,15 @@ onMounted(() => {
       camera.lookAt(model.position);
       scene.add(camera)
 
-      // scene.castShadow = true;
+      let controls = new OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.05;
+
+      controls.screenSpacePanning = true;
+
+
+
+      scene.castShadow = true;
 
 
       // GLTF Animations
@@ -130,6 +141,10 @@ onMounted(() => {
       if (mixer) {
         mixer.update(clock.getDelta())
       };
+      if (controls) {
+        controls.update();
+      };
+
       if (camera) {
         renderer.render(scene, camera)
       };
@@ -148,6 +163,7 @@ onMounted(() => {
   loadModel();
   animate();
 });
+
 </script>
 
 <template>

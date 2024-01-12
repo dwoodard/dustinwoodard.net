@@ -21,5 +21,20 @@ export default defineConfig({
     alias: {
       '@': '/resources/js',
     },
-  }
+  },
+  build: {
+    outDir: 'public/build',
+    sourcemap: true,
+    manifest: true,
+    emptyOutDir: true,
+    rollupOptions: {
+      input: '/resources/js/app.js',
+      output: {
+        entryFileNames: '[name].js',
+        chunkFileNames: '[name].js',
+        assetFileNames: '[name].[ext]'
+      }
+    },
+  },
+
 });
