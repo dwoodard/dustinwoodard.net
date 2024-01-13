@@ -97,13 +97,21 @@ onMounted(() => {
 
       //min and max distance
       controls.minDistance = 1;
-      controls.maxDistance = 100;
+      controls.maxDistance = 50;
+
+      //don't angle below horizon
+      controls.minPolarAngle = 0;
+      controls.maxPolarAngle = Math.PI / 2;
 
       controls.enableZoom = true;
-      controls.zoomSpeed = 0.1;
+      controls.zoomSpeed = 1;
 
-      controls.screenSpacePanning = true;
+      // controls.screenSpacePanni/ng = true; //this is for panning on the screen
 
+
+      //
+      controls.minAzimuthAngle = 0;
+      controls.maxAzimuthAngle = Math.PI / 2;
 
 
       scene.castShadow = true;
