@@ -6,7 +6,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { gsap } from 'gsap';
 
 const canvasRef = ref(null);
-
+const PerspectiveCamera = ref(null);
 
 
 
@@ -20,16 +20,7 @@ onMounted(() => {
     renderer = new THREE.WebGLRenderer({
       antialias: true,
       canvas: canvasRef.value,
-
       alpha: true,
-      toneMapping: THREE.NoToneMapping,
-      outputEncoding: THREE.sRGBEncoding,
-      physicallyCorrectLights: true,
-      toneMappingExposure: .5,
-      shadowMap: {
-        enabled: true,
-        type: THREE.PCFSoftShadowMap,
-      }
 
     });
 
@@ -41,8 +32,15 @@ onMounted(() => {
 
   // Update Renderer Size
   function updateRendererSize() {
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1));
+    renderer.setSize(window.innerWidth, window.innerHeight)
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1))
+    renderer.outputEncoding = THREE.sRGBEncoding
+    renderer.physicallyCorrectLights = true
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+
+
 
 
     if (camera) {
@@ -58,7 +56,7 @@ onMounted(() => {
   // Load GLTF Model
   function loadModel() {
     const loader = new GLTFLoader();
-    loader.load('/assets/models/main/scene.glb', (gltf) => {
+    loader.load('/assets/models/main/scene.gltf', (gltf) => {
       const model = gltf.scene;
       scene.add(model);
 
@@ -68,21 +66,41 @@ onMounted(() => {
       let gltfCamera = gltf.cameras[0];
 
 
+
       camera = new THREE.PerspectiveCamera();
-      const helper = new THREE.CameraHelper(camera);
-      scene.add(helper);
+
+      gsap.to(camera.position, {
+        duration: 1,
+        x: gltfCamera.position.x,
+        y: gltfCamera.position.y,
+        z: gltfCamera.position.z,
+        ease: "power2.inOut",
+        onUpdate: () => {
+          camera.lookAt(model.position);
+        }
+
+      });
+
+      // const helper = new THREE.CameraHelper(camera);
+      // scene.add(helper);
+
+      // gsap to camera to gltf camera position
 
 
-      camera.position.set(gltfCamera.position.x, gltfCamera.position.y, gltfCamera.position.z);
-      camera.rotation.set(gltfCamera.rotation.x, gltfCamera.rotation.y, gltfCamera.rotation.z);
-      camera.scale.set(gltfCamera.scale.x, gltfCamera.scale.y, gltfCamera.scale.z);
 
-      camera.lookAt(model.position);
+
       scene.add(camera)
 
       let controls = new OrbitControls(camera, renderer.domElement);
       controls.enableDamping = true;
-      controls.dampingFactor = 0.05;
+      controls.dampingFactor = 0.01;
+
+      //min and max distance
+      controls.minDistance = 1;
+      controls.maxDistance = 100;
+
+      controls.enableZoom = true;
+      controls.zoomSpeed = 0.1;
 
       controls.screenSpacePanning = true;
 
@@ -103,13 +121,14 @@ onMounted(() => {
           let color = "#FFFFFF";
           return parseInt(color.replace('#', ''), 16);
         },
-        intensity: 10,
+        intensity: 100,
         distance: 100,
       }
 
+
       let worldLight = new THREE.PointLight(pointLight.color, pointLight.intensity, pointLight.distance);
       worldLight.position.set(0, 50, 0);
-      // scene.add(worldLight);
+      scene.add(worldLight);
 
       // hemi light
       let hemiLight = {
@@ -121,7 +140,7 @@ onMounted(() => {
           let groundColor = "#000000";
           return parseInt(groundColor.replace('#', ''), 16);
         },
-        intensity: 2
+        intensity: 1
       }
 
 
