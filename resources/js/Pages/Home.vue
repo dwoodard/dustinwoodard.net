@@ -1,37 +1,18 @@
 <script setup>
-import { defineProps, onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import { Head, Link, } from '@inertiajs/vue3';
-import Dropdown from '@/Components/Dropdown.vue';
 import NavLink from '@/Components/NavLink.vue';
 import { onKonamiCode } from '@/utils/konami';
 
 import Island from '@/Components/Models/Island.vue';
 
 
-defineProps({
-  canLogin: {
-    type: Boolean,
-  },
-  canRegister: {
-    type: Boolean,
-  },
-  laravelVersion: {
-    type: String,
-    required: true,
-  },
-  phpVersion: {
-    type: String,
-    required: true,
-  },
-  currentTime: {
-    type: String,
-    required: true,
-  },
-  currentDate: {
-    type: String,
-    required: true,
-  },
-});
+const currentPosition = ref('home');
+
+let setPostion = (position, event) => {
+  event.preventDefault();
+  currentPosition.value = position;
+}
 
 onKonamiCode(() => {
   console.log('You found the Konami Code!');
@@ -54,21 +35,33 @@ onKonamiCode(() => {
       <!-- 
         make glass navbar using tailwindcss
        -->
-      <div class="fixed  backdrop-filter backdrop-blur-[5px]  border-gray-100 w-full h-16 flex justify-between items-center px-4 sm:px-6 lg:px-8">
+      <div class="fixed bg-white bg-opacity-5  backdrop-filter backdrop-blur-[5px]  border-gray-100 w-full h-16 flex justify-between items-center px-4 sm:px-6 lg:px-8">
         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-          <NavLink :href="route('home')" :active="route().current('home')">
-            Home
-          </NavLink>
 
-          <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+          <!-- if user is logged in -->
+          <NavLink v-if="user" :href="route('dashboard')" :active="route().current('dashboard')">
             Dashboard
           </NavLink>
+
+          <a @click="setPostion('home', $event)">
+            Home
+          </a>
+
+
+          <a @click="setPostion('about', $event)">
+            About
+          </a>
+
+          <a @click="setPostion('contact', $event)">
+            Contact
+          </a>
+
         </div>
       </div>
 
 
       <div>
-        <Island />
+        <Island :state="currentPosition" />
       </div>
       <!-- Navigation Links -->
 
