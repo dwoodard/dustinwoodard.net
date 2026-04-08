@@ -1,0 +1,39 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "type": "command",
+        "command": "pensive hook session-start"
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "type": "command",
+        "command": "pensive hook user-prompt"
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "type": "command",
+        "command": "pensive hook stop"
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "",
+        "type": "command",
+        "command": "pensive hook compact"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "",
+        "type": "command",
+        "command": "pensive hook post-tool-use"
+      }
+    ]
+  }
+}
