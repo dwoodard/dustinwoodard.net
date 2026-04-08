@@ -134,7 +134,7 @@ Buttons:
 - Timeline
 
 **Optional:**
-- Calendly link (for booking calls)
+- go highlevel with a calendar booking system (e.g., free Meet consultations) for direct calls
 
 ---
 
@@ -142,7 +142,7 @@ Buttons:
 
 **Style:**
 - Clean, modern, minimal
-- Dark or light theme (pick one and stay consistent)
+- light theme (consistent)
 - Strong typography
 - Lots of spacing
 
@@ -204,7 +204,7 @@ Focus on:
 
 ### Step 2
 
-- Set up project (Next.js + Tailwind)
+- Set up project (Laravel 13 + Tailwind)
 
 ### Step 3
 
@@ -222,7 +222,7 @@ Focus on:
 
 ### Step 5
 
-- Deploy (Vercel)
+- Deploy (Laravel Forge)
 
 ---
 
@@ -245,3 +245,4 @@ It is a:
 > **sales tool designed to generate $5k+ projects**
 
 Keep it simple, direct, and focused on conversion.
+
