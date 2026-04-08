@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Teams\TeamInvitationController;
 use App\Http\Middleware\EnsureTeamMembership;
 use App\Models\PortfolioItem;
@@ -14,6 +15,8 @@ Route::get('/', function () {
             ->get(['id', 'title', 'description', 'image', 'url', 'tags']),
     ]);
 })->name('home');
+
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 Route::prefix('{current_team}')
     ->middleware(['auth', 'verified', EnsureTeamMembership::class])

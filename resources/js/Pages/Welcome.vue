@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { Head, Link } from '@inertiajs/vue3';
-import { login } from '@/routes';
+import { Head, useForm, usePage } from '@inertiajs/vue3';
+import { computed } from 'vue';
+import { store as contactStore } from '@/actions/App/Http/Controllers/ContactController';
 
 interface PortfolioItem {
     id: number;
@@ -9,6 +10,21 @@ interface PortfolioItem {
     image: string | null;
     url: string | null;
     tags: string[] | null;
+}
+
+const page = usePage<{ flash: { success: boolean | null } }>();
+const submitted = computed(() => page.props.flash.success === true);
+
+const form = useForm({
+    name: '',
+    email: '',
+    budget: '',
+    timeline: '',
+    description: '',
+});
+
+function submit() {
+    form.post(contactStore.url(), { preserveScroll: true });
 }
 
 withDefaults(
@@ -278,58 +294,83 @@ const processSteps = [
                 </p>
 
                 <!-- Contact Form -->
-                <form class="bg-white rounded-2xl p-8 text-left space-y-5">
+                <div v-if="submitted" class="bg-white rounded-2xl p-8 text-center">
+                    <div class="text-4xl mb-4">✓</div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Message sent!</h3>
+                    <p class="text-gray-500">I'll get back to you within one business day.</p>
+                </div>
+                <form v-else class="bg-white rounded-2xl p-8 text-left space-y-5" @submit.prevent="submit">
                     <div class="grid sm:grid-cols-2 gap-5">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1.5">Name</label>
                             <input
+                                v-model="form.name"
                                 type="text"
                                 placeholder="Jane Smith"
-                                class="w-full px-4 py-3 rounded-lg border border-gray-200 text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent placeholder-gray-400"
+                                class="w-full px-4 py-3 rounded-lg border text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent placeholder-gray-400"
+                                :class="form.errors.name ? 'border-red-400' : 'border-gray-200'"
                             />
+                            <p v-if="form.errors.name" class="mt-1 text-xs text-red-500">{{ form.errors.name }}</p>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1.5">Email</label>
                             <input
+                                v-model="form.email"
                                 type="email"
                                 placeholder="jane@company.com"
-                                class="w-full px-4 py-3 rounded-lg border border-gray-200 text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent placeholder-gray-400"
+                                class="w-full px-4 py-3 rounded-lg border text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent placeholder-gray-400"
+                                :class="form.errors.email ? 'border-red-400' : 'border-gray-200'"
                             />
+                            <p v-if="form.errors.email" class="mt-1 text-xs text-red-500">{{ form.errors.email }}</p>
                         </div>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1.5">Budget Range</label>
-                        <select class="w-full px-4 py-3 rounded-lg border border-gray-200 text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent bg-white">
-                            <option value="" disabled selected>Select a range</option>
+                        <select
+                            v-model="form.budget"
+                            class="w-full px-4 py-3 rounded-lg border text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent bg-white"
+                            :class="form.errors.budget ? 'border-red-400' : 'border-gray-200'"
+                        >
+                            <option value="" disabled>Select a range</option>
                             <option>$2,500 – $5,000</option>
                             <option>$5,000 – $8,000</option>
                             <option>$8,000+</option>
                             <option>Not sure yet</option>
                         </select>
+                        <p v-if="form.errors.budget" class="mt-1 text-xs text-red-500">{{ form.errors.budget }}</p>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1.5">Timeline</label>
-                        <select class="w-full px-4 py-3 rounded-lg border border-gray-200 text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent bg-white">
-                            <option value="" disabled selected>Select a timeline</option>
+                        <select
+                            v-model="form.timeline"
+                            class="w-full px-4 py-3 rounded-lg border text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent bg-white"
+                            :class="form.errors.timeline ? 'border-red-400' : 'border-gray-200'"
+                        >
+                            <option value="" disabled>Select a timeline</option>
                             <option>ASAP (within 2 weeks)</option>
                             <option>1 month</option>
                             <option>2–3 months</option>
                             <option>Flexible</option>
                         </select>
+                        <p v-if="form.errors.timeline" class="mt-1 text-xs text-red-500">{{ form.errors.timeline }}</p>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1.5">Project Description</label>
                         <textarea
+                            v-model="form.description"
                             rows="4"
                             placeholder="Tell me about your project, goals, and anything else that's helpful..."
-                            class="w-full px-4 py-3 rounded-lg border border-gray-200 text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent placeholder-gray-400 resize-none"
+                            class="w-full px-4 py-3 rounded-lg border text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent placeholder-gray-400 resize-none"
+                            :class="form.errors.description ? 'border-red-400' : 'border-gray-200'"
                         ></textarea>
+                        <p v-if="form.errors.description" class="mt-1 text-xs text-red-500">{{ form.errors.description }}</p>
                     </div>
                     <button
                         type="submit"
-                        class="w-full bg-gray-900 text-white py-3.5 rounded-lg font-medium hover:bg-gray-700 transition-colors"
+                        :disabled="form.processing"
+                        class="w-full bg-gray-900 text-white py-3.5 rounded-lg font-medium hover:bg-gray-700 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                        Send Message
+                        {{ form.processing ? 'Sending…' : 'Send Message' }}
                     </button>
                 </form>
             </div>
