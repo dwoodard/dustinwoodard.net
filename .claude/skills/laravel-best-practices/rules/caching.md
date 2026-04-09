@@ -5,6 +5,7 @@
 Atomic pattern prevents race conditions and removes boilerplate.
 
 Incorrect:
+
 ```php
 $val = Cache::get('stats');
 if (! $val) {
@@ -14,6 +15,7 @@ if (! $val) {
 ```
 
 Correct:
+
 ```php
 $val = Cache::remember('stats', 60, fn () => $this->computeStats());
 ```
@@ -59,7 +61,7 @@ public function roles(): Collection
 }
 ```
 
-Multiple calls return the cached result without re-executing. Use `once()` for expensive computations called multiple times per request. Use `Cache::memo()` when you also want cross-request caching.
+Multiple calls return the cached result without re-executing. Use `once()` for expensieve computations called multiple times per request. Use `Cache::memo()` when you also want cross-request caching.
 
 ## Configure Failover Cache Stores in Production
 

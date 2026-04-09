@@ -4,35 +4,35 @@
       {
         "matcher": "",
         "type": "command",
-        "command": "pensive hook session-start"
+        "command": "pensieve hook session-start"
       }
     ],
     "UserPromptSubmit": [
       {
         "matcher": "",
         "type": "command",
-        "command": "pensive hook user-prompt"
+        "command": "pensieve hook user-prompt"
       }
     ],
     "Stop": [
       {
         "matcher": "",
         "type": "command",
-        "command": "pensive hook stop"
+        "command": "pensieve hook stop"
       }
     ],
     "PreCompact": [
       {
         "matcher": "",
         "type": "command",
-        "command": "pensive hook compact"
+        "command": "pensieve hook compact"
       }
     ],
     "PostToolUse": [
       {
         "matcher": "",
         "type": "command",
-        "command": "pensive hook post-tool-use"
+        "command": "pensieve hook post-tool-use"
       }
     ]
   }

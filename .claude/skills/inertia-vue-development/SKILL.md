@@ -501,7 +501,7 @@ const { start, stop } = usePoll(5000, {
 
 ### WhenVisible
 
-Lazy-load a prop when an element scrolls into view. Useful for deferring expensive data that sits below the fold:
+Lazy-load a prop when an element scrolls into view. Useful for deferring expensieve data that sits below the fold:
 
 <!-- WhenVisible Example -->
 ```vue
