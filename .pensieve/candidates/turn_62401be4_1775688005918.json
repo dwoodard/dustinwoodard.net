@@ -1,0 +1,23 @@
+[
+  {
+    "id": "cand_eae66c1ff046",
+    "sessionId": "62401be4-8b80-496c-991c-d135077f2331",
+    "turnId": "turn_62401be4_1775688005918",
+    "createdAt": "2026-04-08T22:40:10.576Z",
+    "kind": "decision",
+    "title": "Email design for contact form",
+    "summary": "We decided to use a dark header with the site name and a two-column layout for the contact form email.",
+    "recallCue": "when reviewing or updating the email template",
+    "status": "done"
+  },
+  {
+    "id": "cand_9db6b60a1b01",
+    "sessionId": "62401be4-8b80-496c-991c-d135077f2331",
+    "turnId": "turn_62401be4_1775688005918",
+    "createdAt": "2026-04-08T22:40:10.576Z",
+    "kind": "fact",
+    "title": "Reply-to email address",
+    "summary": "The reply-to field is set to the submitter's email so replies go directly to them.",
+    "recallCue": "when configuring or debugging email handling"
+  }
+]

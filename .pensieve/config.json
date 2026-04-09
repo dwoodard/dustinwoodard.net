@@ -1,0 +1,18 @@
+{
+  "projectId": "proj_4d0c57a3fb4a",
+  "projectName": "dustinwoodard.net",
+  "repoPath": "/Users/dustin/projects/Sites/dustinwoodard.net",
+  "createdAt": "2026-04-08T15:50:53.372Z",
+  "llm": {
+    "provider": "lmstudio",
+    "model": "openai/gpt-oss-20b",
+    "baseUrl": "http://localhost:1234/v1",
+    "apiKey": ""
+  },
+  "embedding": {
+    "provider": "lmstudio",
+    "model": "text-embedding-nomic-embed-text-v1.5",
+    "baseUrl": "http://localhost:1234/v1",
+    "apiKey": ""
+  }
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "cand_b97ac2fdf252",
+    "sessionId": "62401be4-8b80-496c-991c-d135077f2331",
+    "turnId": "turn_62401be4_1775684735509",
+    "createdAt": "2026-04-08T21:45:40.411Z",
+    "kind": "decision",
+    "title": "Use SIDEBAR_NAV_END hook for back link",
+    "summary": "Decided to place the \"← Back to site\" link at the end of the Filament sidebar navigation using the SIDEBAR_NAV_END render hook.",
+    "recallCue": "When adding a persistent back link to the Filament sidebar"
+  },
+  {
+    "id": "cand_489004b0f97f",
+    "sessionId": "62401be4-8b80-496c-991c-d135077f2331",
+    "turnId": "turn_62401be4_1775684735509",
+    "createdAt": "2026-04-08T21:45:40.411Z",
+    "kind": "task",
+    "title": "Add back link to home page in Filament sidebar",
+    "summary": "Implemented a pinned \"← Back to site\" link at the bottom of the Filament sidebar that navigates to `/` in the same tab.",
+    "recallCue": "When confirming the back link has been added",
+    "status": "done"
+  }
+]
