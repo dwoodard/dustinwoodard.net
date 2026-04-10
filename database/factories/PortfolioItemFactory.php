@@ -18,7 +18,13 @@ class PortfolioItemFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => $this->faker->sentence(4),
+            'description' => $this->faker->paragraph(),
+            'image' => 'https://picsum.photos/seed/' . $this->faker->uuid . '/800/600',
+            'url' => $this->faker->url(),
+            'tags' => $this->faker->words(3),
+            'sort_order' => $this->faker->numberBetween(1, 10),
+            'is_visible' => true,
         ];
     }
 }
