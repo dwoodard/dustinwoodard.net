@@ -4,9 +4,9 @@
   "repoPath": "/Users/dustin/projects/Sites/dustinwoodard.net",
   "createdAt": "2026-04-08T15:50:53.372Z",
   "llm": {
-    "provider": "lmstudio",
-    "model": "google/gemma-3n-e4b",
-    "baseUrl": "http://localhost:1234/v1",
+    "provider": "ollama",
+    "model": "gemma4:31b-cloud",
+    "baseUrl": "http://localhost:11434/v1",
     "apiKey": ""
   },
   "embedding": {
